@@ -12,8 +12,19 @@ class Timer extends Component {
   }
 
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.time === nextState.time) {
+      return false
+    }
+    return true
+  }
 
   //Your code here
+  componentDidUpdate()
+  {
+    this.timer.current.style.color =
+      "#" + Math.floor(Math.random() * 16777215).toString(16);
+  }
 
 
 
@@ -26,7 +37,7 @@ class Timer extends Component {
   }
 
   render() {
-    const { time, color, className, logText } = this.state
+    const { time, color,  logText } = this.state
     return (
       <section className="Timer" style={{background: color}} ref={this.timer}>
 
